@@ -1,56 +1,54 @@
-import React from "react";
-import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
-import "./App.css";
+import "./App.scss";
+import Button from "./components/Button";
+import ButtonsContainer from "./components/ButtonsContainer";
+import ControllerContainer from "./components/ControllerContainer";
+import MainContainer from "./components/MainContainer";
+import PositionControlContainer from "./components/PositionControlContainer";
+import PositionInput from "./components/PositionInput";
+import PositionSetButton from "./components/PositionSetButton";
+import StatusBar from "./components/StatusBar";
+import { BOARD_DEFAULT_PARAMS } from "./constants/boardLimits";
+import Board from "./features/board/Board";
+
+const emptyFunc = () => {
+  /* nothing */
+};
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
+        <h1>Toy Robot Simulator</h1>
       </header>
+      <MainContainer>
+        <Board {...BOARD_DEFAULT_PARAMS} />
+        <ControllerContainer>
+          <StatusBar />
+          <ButtonsContainer>
+            <Button label="Up" onClick={emptyFunc} />
+            <Button label="Down" onClick={emptyFunc} />
+            <Button label="Left" onClick={emptyFunc} />
+            <Button label="Right" onClick={emptyFunc} />
+          </ButtonsContainer>
+          <PositionControlContainer>
+            <PositionInput
+              // value={0}
+              min={0}
+              max={4}
+              placeholder="X"
+              onChange={emptyFunc}
+            />
+            <PositionInput
+              // value={0}
+              min={0}
+              max={4}
+              placeholder="Y"
+              onChange={emptyFunc}
+            />
+            <PositionSetButton onClick={emptyFunc} />
+          </PositionControlContainer>
+        </ControllerContainer>
+      </MainContainer>
     </div>
   );
 }

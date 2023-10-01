@@ -1,0 +1,17 @@
+.App {
+  height: 100vh;
+  background-color: #f0faf4;
+  overflow: hidden;
+
+  .App-header {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  main {
+    max-width: 1200px;
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
