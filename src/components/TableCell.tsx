@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BORDER_COLOR } from "../constants/colors";
 
-const BoardCell = styled.div`
+const TableCell = styled.div`
   min-width: 10px;
   min-height: 10px;
   border-right: 1px solid ${BORDER_COLOR};
@@ -12,14 +12,14 @@ const BoardCell = styled.div`
   }
 `;
 
-const BoardCellLastColumn = styled(BoardCell)`
+const TableCellLastColumn = styled(TableCell)`
   border-right: 0;
 `;
 
-const BoardCellLastRow = styled(BoardCell)`
+const TableCellLastRow = styled(TableCell)`
   border-bottom: 0;
 `;
 
-export default BoardCell;
+export default TableCell;
 
-export { BoardCellLastColumn, BoardCellLastRow };
+export { TableCellLastColumn, TableCellLastRow };

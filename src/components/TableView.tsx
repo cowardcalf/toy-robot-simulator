@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import BoardCell, { BoardCellLastColumn, BoardCellLastRow } from "./BoardCell";
+import TableCell, { TableCellLastColumn, TableCellLastRow } from "./TableCell";
 import { memo } from "react";
-import { BoardProps } from "../types/BoardProps";
+import { TableProps } from "../types/TableProps";
 
-const BoardViewDiv = styled.div<{
+const TableViewDiv = styled.div<{
   rows: number;
   columns: number;
   width: number;
@@ -21,27 +21,27 @@ const BoardViewDiv = styled.div<{
   border-radius: 5px;
 `;
 
-const BoardView = memo(({ rows, columns, width, height }: BoardProps) => {
+const TableView = memo(({ rows, columns, width, height }: TableProps) => {
   return (
-    <BoardViewDiv rows={rows} columns={columns} width={width} height={height}>
+    <TableViewDiv rows={rows} columns={columns} width={width} height={height}>
       {Array.from({ length: rows })
         .map((_ri, rIndex) =>
           Array.from({ length: columns }).map((_ci, cIndex) => {
             const key = `${rIndex}-${cIndex}`;
             if (rIndex === rows - 1) {
-              return <BoardCellLastRow key={key} />;
+              return <TableCellLastRow key={key} />;
             }
             if (cIndex === columns - 1) {
-              return <BoardCellLastColumn key={key} />;
+              return <TableCellLastColumn key={key} />;
             }
-            return <BoardCell key={key} />;
+            return <TableCell key={key} />;
           })
         )
         .flat()}
-    </BoardViewDiv>
+    </TableViewDiv>
   );
 });
 
-BoardView.displayName = "BoardView";
+TableView.displayName = "TableView";
 
-export default BoardView;
+export default TableView;

@@ -1,4 +1,4 @@
-export type BoardProps = {
+export type TableProps = {
   rows: number;
   columns: number;
   width: number;

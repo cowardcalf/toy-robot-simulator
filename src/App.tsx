@@ -7,8 +7,9 @@ import PositionControlContainer from "./components/PositionControlContainer";
 import PositionInput from "./components/PositionInput";
 import PositionSetButton from "./components/PositionSetButton";
 import StatusBar from "./components/StatusBar";
-import { BOARD_DEFAULT_PARAMS } from "./constants/boardLimits";
-import Board from "./features/board/Board";
+import { TABLE_DEFAULT_PARAMS } from "./constants/tableLimits";
+
+import Table from "./features/table/Table";
 
 const emptyFunc = () => {
   /* nothing */
@@ -21,7 +22,7 @@ function App() {
         <h1>Toy Robot Simulator</h1>
       </header>
       <MainContainer>
-        <Board {...BOARD_DEFAULT_PARAMS} />
+        <Table {...TABLE_DEFAULT_PARAMS} />
         <ControllerContainer>
           <StatusBar />
           <ButtonsContainer>
