@@ -1,4 +1,4 @@
-import { TABLE_MIN_COLS, TABLE_MIN_ROWS } from "../constants/tableLimits";
+import { TABLE_MIN_COLS, TABLE_MIN_ROWS } from "../../../constants/tableLimits";
 
 // Check if setting position is in current range.
 // the max rows / cols are lengths, x / y should not equal to that.

@@ -10,10 +10,9 @@ import {
   TABLE_MIN_WIDTH
 } from "../constants/tableLimits";
 import { TableProps } from "../types/TableProps";
-import { isNil } from "lodash";
 
 const getValidValue = (max: number, min: number, value: number) => {
-  return !isNil(value) ? value : Math.min(Math.max(min, value), max);
+  return Math.min(Math.max(min, value), max);
 };
 
 // Return the default params if not available.

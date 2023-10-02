@@ -1,29 +1,29 @@
 import TableView from "../../components/TableView";
 import Robot from "../../components/Robot";
 import avatar from "../../imgs/robot-assistant.png";
-import { TableProps } from "../../types/TableProps";
-import getValidTableParams from "../../utils/getValidTableParams";
 import TableWrapper from "../../components/TableWrapper";
+import { useSelector } from "react-redux";
+import { getCellSize, getRobotPosition, getTableProps } from "./selectors";
+import { isNil } from "lodash";
 
-// TODO: may need to round the size
-const getCellSize = ({ width, height, rows, columns }: TableProps) => {
-  return { width: width / rows, height: height / columns };
-};
-
-const Table = (props: TableProps) => {
-  const validParams = getValidTableParams(props);
-  const cellSize = getCellSize(validParams);
+const Table = () => {
+  const tableProps = useSelector(getTableProps);
+  const cellSize = useSelector(getCellSize);
+  const robotPosition = useSelector(getRobotPosition);
 
   return (
     <TableWrapper>
-      <Robot
-        avatar={avatar}
-        width={cellSize.width}
-        height={cellSize.height}
-        x={3}
-        y={4}
-      />
-      <TableView {...props} />
+      {/* Don't show robot if it is not set */}
+      {isNil(robotPosition.x) || isNil(robotPosition.y) ? null : (
+        <Robot
+          $avatar={avatar}
+          $width={cellSize.width}
+          $height={cellSize.height}
+          $x={robotPosition.x}
+          $y={robotPosition.y}
+        />
+      )}
+      <TableView {...tableProps} />
     </TableWrapper>
   );
 };

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
 import areGridsValid from "./utils/areGridsValid";
 import isPositionValid from "./utils/isPositionValid";
 import {
@@ -14,8 +13,11 @@ import {
 import Direction from "../../types/Direction";
 import getRobotNewPosition from "./utils/getRobotNewPosition";
 import { isNil } from "lodash";
+import { TABLE_DEFAULT_PARAMS } from "../../constants/tableLimits";
 
 export interface TableState {
+  width: number;
+  height: number;
   rows: number;
   columns: number;
   robotX?: number;
@@ -23,13 +25,14 @@ export interface TableState {
   status: string;
 }
 
-const initialState: TableState = {
-  rows: 5,
-  columns: 5,
-  robotX: undefined,
-  robotY: undefined,
-  status: ""
-};
+const initialState: TableState = Object.assign(
+  {
+    robotX: undefined,
+    robotY: undefined,
+    status: ""
+  },
+  TABLE_DEFAULT_PARAMS
+);
 
 // const clearStatus = (state: TableState) => (state.status = "");
 
@@ -63,12 +66,12 @@ export const tableSlice = createSlice({
       state.robotY = y;
       state.status = STATUS_POSITION_SET(x, y);
     },
-    moveRobot: (state, action: PayloadAction<{ direction: Direction }>) => {
+    moveRobot: (state, action: PayloadAction<Direction>) => {
       if (isNil(state.robotX) || isNil(state.robotY)) {
         state.status = ERROR_ROBOT_HAS_NOT_BEEN_SET;
         return state;
       }
-      const { direction } = action.payload;
+      const direction = action.payload;
       const newPos = getRobotNewPosition(state.robotX, state.robotY, direction);
       if (!isPositionValid(newPos.x, newPos.y, state.rows, state.columns)) {
         state.status = ERROR_ROBOT_MOVE(direction);
@@ -84,11 +87,5 @@ export const tableSlice = createSlice({
 const tableReducer = tableSlice.reducer;
 
 export const { setGrids, setRobotPosition, moveRobot } = tableSlice.actions;
-
-// Selectors
-export const getRobotPosition = (state: RootState) => ({
-  x: state.table.robotX,
-  y: state.table.robotY
-});
 
 export default tableReducer;

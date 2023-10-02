@@ -1,3 +1,4 @@
+import { isNil, isNumber } from "lodash";
 import styled from "styled-components";
 
 const StyledPositionInput = styled.input`
@@ -11,7 +12,7 @@ const StyledPositionInput = styled.input`
 type PositionInputProps = {
   value?: number;
   placeholder?: string;
-  onChange: () => void;
+  onChange: (value: number) => void;
   min: number;
   max: number;
 };
@@ -23,10 +24,17 @@ const PositionInput = ({
   max,
   placeholder
 }: PositionInputProps) => {
+  function onChangeInner(e: React.FormEvent<HTMLInputElement>) {
+    const newValue = parseInt(e.currentTarget.value);
+    if (isNumber(newValue)) {
+      onChange(newValue);
+    }
+  }
+
   return (
     <StyledPositionInput
-      value={value}
-      onChange={onChange}
+      value={!isNil(value) ? value : ""}
+      onChange={onChangeInner}
       type="number"
       min={min}
       max={max}

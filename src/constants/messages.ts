@@ -15,14 +15,13 @@ const STATUS_POSITION_SET = (x: number, y: number) =>
 const ERROR_INVALID_POSITION_SET = (x: number, y: number) =>
   `${ERROR_PREFIX}invalid position X(${x}) or Y(${y})`;
 
-const ERROR_ROBOT_HAS_NOT_BEEN_SET =
-  "${ERROR_PREFIX}the robot has not been set on the table";
+const ERROR_ROBOT_HAS_NOT_BEEN_SET = `${ERROR_PREFIX}the robot has not been set on the table`;
 
 const ERROR_ROBOT_MOVE = (direction: Direction) =>
-  `${ERROR_PREFIX}the robot cannot move to ${direction}`;
+  `${ERROR_PREFIX}the robot cannot move ${direction}`;
 
 const STATUS_ROBOT_HAS_MOVED = (direction: Direction) =>
-  `${STATUS_PREFIX}the robot has moved to ${direction}`;
+  `${STATUS_PREFIX}the robot has moved ${direction}`;
 
 export {
   STATUS_GRIDS_SET,

@@ -7,8 +7,8 @@ const TABLE_MAX_ROWS = 10;
 const TABLE_MIN_COLS = 0;
 const TABLE_MAX_COLS = 10;
 const TABLE_DEFAULT_PARAMS = {
-  width: 500,
-  height: 500,
+  width: 400,
+  height: 400,
   columns: 5,
   rows: 5
 };
