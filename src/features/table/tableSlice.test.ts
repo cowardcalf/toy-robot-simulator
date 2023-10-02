@@ -18,14 +18,14 @@ describe("table reducer", () => {
   describe("setGrids tests", () => {
     describe("setGrids invalid cases", () => {
       test("setGrids rows should not smaller than the minimum", () => {
-        const expectedStatus = "Error: invalid rows(-1) or columns(1)";
+        const expectedStatus = "Error: invalid rows(0) or columns(1)";
         const actual = tableReducer(
           initialState,
-          setGrids({ rows: -1, columns: 1 })
+          setGrids({ rows: 0, columns: 1 })
         );
         expect(actual.status).toEqual(expectedStatus);
       });
-      test("setGrids rows should not larger thanthe maximum", () => {
+      test("setGrids rows should not larger than the maximum", () => {
         const expectedStatus = "Error: invalid rows(11) or columns(1)";
         const actual = tableReducer(
           initialState,
@@ -34,18 +34,18 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
       });
       test("setGrids columns should not smaller than the minimum", () => {
-        const expectedStatus = "Error: invalid rows(1) or columns(-1)";
+        const expectedStatus = "Error: invalid rows(1) or columns(0)";
         const actual = tableReducer(
           initialState,
-          setGrids({ rows: 1, columns: -1 })
+          setGrids({ rows: 1, columns: 0 })
         );
         expect(actual.status).toEqual(expectedStatus);
       });
       test("setGrids columns should not larger than the maximum", () => {
-        const expectedStatus = "Error: invalid rows(0) or columns(11)";
+        const expectedStatus = "Error: invalid rows(1) or columns(11)";
         const actual = tableReducer(
           initialState,
-          setGrids({ rows: 0, columns: 11 })
+          setGrids({ rows: 1, columns: 11 })
         );
         expect(actual.status).toEqual(expectedStatus);
       });

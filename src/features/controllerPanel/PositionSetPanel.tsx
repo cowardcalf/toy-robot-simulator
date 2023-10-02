@@ -5,7 +5,6 @@ import { useAppDispatch } from "../../app/hooks";
 import PositionControlContainer from "../../components/PositionControlContainer";
 import PositionInput from "../../components/PositionInput";
 import PositionSetButton from "../../components/PositionSetButton";
-import { TABLE_MIN_COLS, TABLE_MIN_ROWS } from "../../constants/tableLimits";
 import { getRobotPosition, getTableProps } from "../table/selectors";
 import { setRobotPosition } from "../table/tableSlice";
 
@@ -26,14 +25,14 @@ const PositionSetPanel = () => {
     <PositionControlContainer>
       <PositionInput
         value={x}
-        min={TABLE_MIN_COLS}
+        min={0}
         max={tableProps.columns}
         placeholder="X"
         onChange={setX}
       />
       <PositionInput
         value={y}
-        min={TABLE_MIN_ROWS}
+        min={0}
         max={tableProps.rows}
         placeholder="Y"
         onChange={setY}

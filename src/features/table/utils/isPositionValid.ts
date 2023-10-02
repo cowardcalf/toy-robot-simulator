@@ -1,5 +1,3 @@
-import { TABLE_MIN_COLS, TABLE_MIN_ROWS } from "../../../constants/tableLimits";
-
 // Check if setting position is in current range.
 // the max rows / cols are lengths, x / y (zero index based) should not equal to the max.
 const isPositionValid = (
@@ -8,9 +6,7 @@ const isPositionValid = (
   maxRows: number,
   maxCols: number
 ) => {
-  return (
-    y >= TABLE_MIN_ROWS && y < maxRows && x >= TABLE_MIN_COLS && x < maxCols
-  );
+  return y >= 0 && y < maxRows && x >= 0 && x < maxCols;
 };
 
 export default isPositionValid;
