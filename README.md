@@ -1,71 +1,75 @@
-# Project built from cra-template-redux-router-sass-typescript
+# Toy Robot Simulator
 
-This is a project created from [Create React App](https://github.com/facebook/create-react-app) with template [cra-template-redux-router-sass-typescript](https://github.com/cowardcalf/cra-template-redux-router-sass-typescript).
+This is a technical assignment from a job interview.
 
-Generally the template is a [Typescript](https://github.com/microsoft/TypeScript) one for using [redux](https://react-redux.js.org/), [React Router](https://reactrouter.com/) and [sass](https://github.com/sass/sass).
+It is a React SPA built by using [create-react-app](https://github.com/facebook/create-react-app) with a [template](https://www.npmjs.com/package/cra-template-redux-router-sass-typescript) (built by myself).
 
-It includes a few of personal preferences settings / configs (eg. the lint rules etc.).
+## Getting start
 
-## Included libraries / configs
+1. Clone the code base.
 
-- [React](https://github.com/facebook/react)
-- [react-router](https://github.com/remix-run/react-router)
-- [redux-toolkit](https://github.com/reduxjs/redux-toolkit)
-- [react-redux](https://github.com/reduxjs/react-redux)
-- [Typescript](https://github.com/microsoft/TypeScript) and configs
-- [sass](https://github.com/sass/sass)
-- [eslint](https://github.com/eslint/eslint) and configs
-- [prettier](https://github.com/prettier/prettier) and configs
-- [VS Code](https://code.visualstudio.com/) and settings
-- Others come from the Create React App.
+1. Under the project folder, run commands in the terminal:
 
-## Available Scripts
+- `npm install`
+- `npm run start`
 
-In the project directory, you can run:
+3. It can also build and serve as a production version.
 
-### `npm start`
+- `npm run build`
+- `serve -s build`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+_(Note: `node` and `serve` may need to install in the system)_
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Description
 
-### `npm test`
+Build a React SPA of a toy robot simulation moving on a square tabletop, the robot can move in a 5x5 grid and there are no obstructions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How it works
 
-### `npm run build`
+- The robot is free to roam around the board via clicking the of Up, Down, Left and Right buttons or using the keyboard arrow keys.
+- A status bar should also frequently update to show the current position of the Robot.
+- If the robot is at the edge of the board, it must be prevented from falling over.
+- To start or reset the robot's position, it should be done via text box. Supply the X, Y position and a button to confirm.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Constraints
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- The robot must not fall off the tabletop. This includes the placement of the robot.
+- Robot must ignore invalid commands.
+  - The robot will not move / be set on the table.
+  - The status bar shows the error.
+- The page must be responsive.
+  - The control panel will wrap to the bottom if screen size is not wide enough.
+  - Some of the components extend / shrink automatically.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Bonus Points
 
-### `npm run eject`
+- CSS Animations
+  - Robot moving.
+  - Treasure spawning.
+  - Robot get the treasure.
+- Images (avatar of the robot)
+  - Simply given a local png.
+- The robot responds back to the user when it receives invalid commands.
+  - So far it only shows error message when invalid.
+  - Todo: add the bounce back animation.
+- An item/treasure spawned at random location when robot's position is first placed, and the robot should respond to the discovery of the item when it's in that location.
+  - Done.
+- Code is to be production ready (well documented, linted, good test coverage).
+  - Necessary commented in code.
+  - linted.
+  - Unit tests on reducers, selectors and UI.
+  - Readme composed.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Libraries used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### `npm run lint`
-
-Run the eslint to check the code base.
-
-### `npm run lint-fix`
-
-Run the eslint to check and try fixing the code base.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React
+- Typescript
+- react-redux
+- styled-components
+- sass
+- lodash
+- reselect
+- eslint
+- prettier
+- jest
+- testing-library
