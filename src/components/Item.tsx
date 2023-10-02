@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-const Robot = styled.div<{
+const Item = styled.div<{
   $width: number;
   $height: number;
   $avatar: string;
-  $x: number;
-  $y: number;
+  $x?: number;
+  $y?: number;
+  $scale?: number;
 }>`
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
@@ -17,11 +18,12 @@ const Robot = styled.div<{
   top: 0;
   left: 0;
   transform: translate(
-    ${(props) => props.$x * props.$width}px,
-    ${(props) => props.$y * props.$height}px
-  );
+      ${(props) => (props.$x ? props.$x * props.$width : 0)}px,
+      ${(props) => (props.$y ? props.$y * props.$height : 0)}px
+    )
+    scale(${(props) => (props.$scale === undefined ? 1 : props.$scale)});
   z-index: 1;
   transition: transform 500ms;
 `;
 
-export default Robot;
+export default Item;

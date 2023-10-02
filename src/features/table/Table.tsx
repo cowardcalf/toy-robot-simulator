@@ -1,10 +1,11 @@
 import TableView from "../../components/TableView";
-import Robot from "../../components/Robot";
+import Item from "../../components/Item";
 import avatar from "../../imgs/robot-assistant.png";
 import TableWrapper from "../../components/TableWrapper";
 import { useSelector } from "react-redux";
 import { getCellSize, getRobotPosition, getTableProps } from "./selectors";
 import { isNil } from "lodash";
+import Treasure from "./Treasure";
 
 const Table = () => {
   const tableProps = useSelector(getTableProps);
@@ -13,9 +14,10 @@ const Table = () => {
 
   return (
     <TableWrapper>
+      <Treasure />
       {/* Don't show robot if it is not set */}
       {isNil(robotPosition.x) || isNil(robotPosition.y) ? null : (
-        <Robot
+        <Item
           $avatar={avatar}
           $width={cellSize.width}
           $height={cellSize.height}

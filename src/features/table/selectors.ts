@@ -7,8 +7,12 @@ const getTableRows = (state: RootState) => state.table.rows;
 const getTableCols = (state: RootState) => state.table.columns;
 const getRobotX = (state: RootState) => state.table.robotX;
 const getRobotY = (state: RootState) => state.table.robotY;
+const getTreasureX = (state: RootState) => state.table.treasureX;
+const getTreasureY = (state: RootState) => state.table.treasureY;
 
 export const getTableStatus = (state: RootState) => state.table.status;
+
+export const getShowTreasure = (state: RootState) => state.table.showTreasure;
 
 // Reselector selectors
 // Use reselector to avoid re-generate new object
@@ -36,4 +40,11 @@ export const getCellSize = createSelector(
     // TODO: may need to round the size
     return { width: width / columns, height: height / rows };
   }
+);
+
+// { x, y }
+export const getTreasurePosition = createSelector(
+  getTreasureX,
+  getTreasureY,
+  (x, y) => ({ x, y })
 );

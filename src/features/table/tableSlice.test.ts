@@ -12,7 +12,8 @@ describe("table reducer", () => {
     height: 400,
     rows: 5,
     columns: 5,
-    status: ""
+    status: "",
+    showTreasure: false
   };
 
   describe("setGrids tests", () => {
@@ -108,6 +109,39 @@ describe("table reducer", () => {
       expect(actual.robotY).toEqual(2);
       expect(actual.status).toEqual(expectedStatus);
     });
+    describe("setRobotPosition generate treasure", () => {
+      test("setRobotPosition should not generate treasure if position is invalid", () => {
+        const actual = tableReducer(
+          initialState,
+          setRobotPosition({ x: -1, y: 3 })
+        );
+        expect(actual.treasureX).toBeUndefined();
+        expect(actual.treasureY).toBeUndefined();
+      });
+
+      test("setRobotPosition should not generate treasure if it is not the first time setting robot position", () => {
+        const robotSetState = Object.assign(
+          { robotX: 1, robotY: 2 },
+          initialState
+        );
+        const actual = tableReducer(
+          robotSetState,
+          setRobotPosition({ x: 2, y: 3 })
+        );
+        expect(actual.treasureX).toBeUndefined();
+        expect(actual.treasureY).toBeUndefined();
+      });
+
+      test("setRobotPosition should generate treasure when first setting robot position", () => {
+        const actual = tableReducer(
+          initialState,
+          setRobotPosition({ x: 1, y: 3 })
+        );
+        expect(actual.treasureX).toBeGreaterThanOrEqual(0);
+        expect(actual.treasureY).toBeGreaterThanOrEqual(0);
+        expect(actual.showTreasure).toBe(true);
+      });
+    });
   });
 
   describe("moveRobot tests", () => {
@@ -143,7 +177,7 @@ describe("table reducer", () => {
         });
 
         const robotBottomRightState = Object.assign(
-          { robotX: 0, robotY: 0 },
+          { robotX: 4, robotY: 4 },
           initialState
         );
 
@@ -199,6 +233,18 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
         expect(actual.robotX).toEqual(2);
         expect(actual.robotY).toEqual(3);
+      });
+
+      test("moveRobot should update treasure properly", () => {
+        const withTreasureState = Object.assign(
+          { treasureX: 3, treasureY: 2 },
+          robotSetState
+        );
+        const actual = tableReducer(
+          withTreasureState,
+          moveRobot(Direction.RIGHT)
+        );
+        expect(actual.showTreasure).toBe(false);
       });
     });
   });

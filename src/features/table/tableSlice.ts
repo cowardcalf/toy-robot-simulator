@@ -14,6 +14,7 @@ import Direction from "../../types/Direction";
 import getRobotNewPosition from "./utils/getRobotNewPosition";
 import { isNil } from "lodash";
 import { TABLE_DEFAULT_PARAMS } from "../../constants/tableLimits";
+import generateTreasure from "./utils/generateTreasure";
 
 export interface TableState {
   width: number;
@@ -23,13 +24,17 @@ export interface TableState {
   robotX?: number;
   robotY?: number;
   status: string;
+  treasureX?: number;
+  treasureY?: number;
+  showTreasure: boolean;
 }
 
 const initialState: TableState = Object.assign(
   {
     robotX: undefined,
     robotY: undefined,
-    status: ""
+    status: "",
+    showTreasure: false
   },
   TABLE_DEFAULT_PARAMS
 );
@@ -62,6 +67,16 @@ export const tableSlice = createSlice({
         state.status = ERROR_INVALID_POSITION_SET(x, y);
         return state;
       }
+
+      // Spawn the treasure if this is the first setting robot
+      if (isNil(state.robotX) || isNil(state.robotY)) {
+        const treasurePos = generateTreasure(x, y, state.rows, state.columns);
+        state.treasureX = treasurePos.x;
+        state.treasureY = treasurePos.y;
+        state.showTreasure = true;
+      }
+
+      // Update the robot
       state.robotX = x;
       state.robotY = y;
       state.status = STATUS_POSITION_SET(x, y);
@@ -80,6 +95,14 @@ export const tableSlice = createSlice({
       state.robotX = newPos.x;
       state.robotY = newPos.y;
       state.status = STATUS_ROBOT_HAS_MOVED(direction);
+
+      // Check if get treasure
+      if (newPos.x === state.treasureX && newPos.y === state.treasureY) {
+        // Don't update the position to avoid jumping animation
+        // state.treasureX = undefined;
+        // state.treasureY = undefined;
+        state.showTreasure = false;
+      }
     }
   }
 });
