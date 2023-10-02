@@ -29,10 +29,11 @@ export const getRobotPosition = createSelector(
   (x, y) => ({ x, y })
 );
 
+// { width: total width / total columns, height: total height / total rows}
 export const getCellSize = createSelector(
   getTableProps,
   ({ width, height, rows, columns }) => {
     // TODO: may need to round the size
-    return { width: width / rows, height: height / columns };
+    return { width: width / columns, height: height / rows };
   }
 );

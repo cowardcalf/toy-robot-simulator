@@ -2,9 +2,9 @@ const TABLE_MIN_WIDTH = 300;
 const TABLE_MAX_WIDTH = 1000;
 const TABLE_MIN_HEIGHT = 300;
 const TABLE_MAX_HEIGHT = 1000;
-const TABLE_MIN_ROWS = 0;
+const TABLE_MIN_ROWS = 1;
 const TABLE_MAX_ROWS = 10;
-const TABLE_MIN_COLS = 0;
+const TABLE_MIN_COLS = 1;
 const TABLE_MAX_COLS = 10;
 const TABLE_DEFAULT_PARAMS = {
   width: 400,
