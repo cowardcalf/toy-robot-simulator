@@ -13,7 +13,7 @@ const NavigationPanel = () => {
     },
     [dispatch]
   );
-  // Use useMemo to avoid re-generate the components
+  // Use useMemo to avoid re-generating the button components
   const buttons = useMemo(() => {
     return Object.values(Direction).map((d) => (
       <NaviButton key={d} direction={d} moveFunc={moveFunc} />

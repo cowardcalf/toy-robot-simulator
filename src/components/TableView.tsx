@@ -28,18 +28,19 @@ const TableView = memo(({ rows, columns, width, height }: TableProps) => {
       $columns={columns}
       $width={width}
       $height={height}
+      title="tableView"
     >
       {Array.from({ length: rows })
         .map((_ri, rIndex) =>
           Array.from({ length: columns }).map((_ci, cIndex) => {
             const key = `${rIndex}-${cIndex}`;
             if (rIndex === rows - 1) {
-              return <TableCellLastRow key={key} />;
+              return <TableCellLastRow key={key} title="tableCell" />;
             }
             if (cIndex === columns - 1) {
-              return <TableCellLastColumn key={key} />;
+              return <TableCellLastColumn key={key} title="tableCell" />;
             }
-            return <TableCell key={key} />;
+            return <TableCell key={key} title="tableCell" />;
           })
         )
         .flat()}

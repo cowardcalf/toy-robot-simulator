@@ -7,7 +7,6 @@ type NaviButtonProps = {
 };
 
 const NaviButton = ({ direction, moveFunc }: NaviButtonProps) => {
-  // useCallback to avoid re-generate the onClick function
   function onClick() {
     moveFunc(direction);
   }
