@@ -23,6 +23,7 @@ export interface TableState {
   columns: number;
   robotX?: number;
   robotY?: number;
+  invalidMove?: Direction;
   status: string;
   treasureX?: number;
   treasureY?: number;
@@ -89,9 +90,14 @@ export const tableSlice = createSlice({
       const direction = action.payload;
       const newPos = getRobotNewPosition(state.robotX, state.robotY, direction);
       if (!isPositionValid(newPos.x, newPos.y, state.rows, state.columns)) {
+        console.log(
+          `moveRobot : position invalid : newPos.x: ${newPos.x}, newPos.y: ${newPos.y}, state.rows: ${state.rows}, state.columns: ${state.rows}`
+        );
         state.status = ERROR_ROBOT_MOVE(direction);
+        state.invalidMove = direction;
         return state;
       }
+      state.invalidMove = undefined;
       state.robotX = newPos.x;
       state.robotY = newPos.y;
       state.status = STATUS_ROBOT_HAS_MOVED(direction);

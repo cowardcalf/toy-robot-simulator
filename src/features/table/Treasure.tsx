@@ -5,12 +5,9 @@ import Item from "../../components/Item";
 import avatar from "../../imgs/treasure-chest.png";
 import { getCellSize, getShowTreasure, getTreasurePosition } from "./selectors";
 
+// Override to not animating the translate
 const TreasureItem = styled(Item)`
-  left: ${(props) => (props.$x ? props.$x * props.$width : 0)}px;
-  top: ${(props) => (props.$y ? props.$y * props.$height : 0)}px;
-  transform: scale(
-    ${(props) => (props.$scale === undefined ? 1 : props.$scale)}
-  );
+  transition: scale 500ms;
 `;
 
 const Treasure = () => {

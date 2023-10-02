@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const blinkAnimation = keyframes`
+  0% {
+    scale: 0
+  }
+  100% {
+    scale: 1
+  }
+`;
 
 const Item = styled.div<{
   $width: number;
@@ -7,6 +16,7 @@ const Item = styled.div<{
   $x?: number;
   $y?: number;
   $scale?: number;
+  $blink?: boolean;
 }>`
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
@@ -17,13 +27,15 @@ const Item = styled.div<{
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(
-      ${(props) => (props.$x ? props.$x * props.$width : 0)}px,
-      ${(props) => (props.$y ? props.$y * props.$height : 0)}px
-    )
-    scale(${(props) => (props.$scale === undefined ? 1 : props.$scale)});
+  translate: ${(props) => (props.$x ? props.$x * props.$width : 0)}px
+    ${(props) => (props.$y ? props.$y * props.$height : 0)}px;
+  scale: ${(props) => (props.$scale === undefined ? 1 : props.$scale)};
   z-index: 1;
-  transition: transform 500ms;
+  transition:
+    translate 500ms,
+    scale 500ms;
+  animation: ${(props) => (props.$blink ? blinkAnimation : "none")} 300ms 3;
+  animation-delay: 500ms;
 `;
 
 export default Item;

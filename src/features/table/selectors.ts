@@ -12,6 +12,8 @@ const getTreasureY = (state: RootState) => state.table.treasureY;
 
 export const getTableStatus = (state: RootState) => state.table.status;
 
+export const getInvalidMove = (state: RootState) => state.table.invalidMove;
+
 export const getShowTreasure = (state: RootState) => state.table.showTreasure;
 
 // Reselector selectors

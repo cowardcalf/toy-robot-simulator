@@ -165,6 +165,7 @@ describe("table reducer", () => {
             moveRobot(Direction.LEFT)
           );
           expect(actual.status).toEqual(expectedStatus);
+          expect(actual.invalidMove).toEqual(Direction.LEFT);
         });
 
         test("moveRobot should not move beyond top edge", () => {
@@ -174,6 +175,7 @@ describe("table reducer", () => {
             moveRobot(Direction.UP)
           );
           expect(actual.status).toEqual(expectedStatus);
+          expect(actual.invalidMove).toEqual(Direction.UP);
         });
 
         const robotBottomRightState = Object.assign(
@@ -188,6 +190,7 @@ describe("table reducer", () => {
             moveRobot(Direction.RIGHT)
           );
           expect(actual.status).toEqual(expectedStatus);
+          expect(actual.invalidMove).toEqual(Direction.RIGHT);
         });
 
         test("moveRobot should not move beyond bottom edge", () => {
@@ -197,6 +200,7 @@ describe("table reducer", () => {
             moveRobot(Direction.DOWN)
           );
           expect(actual.status).toEqual(expectedStatus);
+          expect(actual.invalidMove).toEqual(Direction.DOWN);
         });
       });
     });
@@ -212,6 +216,7 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
         expect(actual.robotX).toEqual(1);
         expect(actual.robotY).toEqual(2);
+        expect(actual.invalidMove).toBeUndefined();
       });
       test("moveRobot should move right properly", () => {
         const expectedStatus = "Status: the robot has moved Right";
@@ -219,6 +224,7 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
         expect(actual.robotX).toEqual(3);
         expect(actual.robotY).toEqual(2);
+        expect(actual.invalidMove).toBeUndefined();
       });
       test("moveRobot should move up properly", () => {
         const expectedStatus = "Status: the robot has moved Up";
@@ -226,6 +232,7 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
         expect(actual.robotX).toEqual(2);
         expect(actual.robotY).toEqual(1);
+        expect(actual.invalidMove).toBeUndefined();
       });
       test("moveRobot should move down properly", () => {
         const expectedStatus = "Status: the robot has moved Down";
@@ -233,6 +240,7 @@ describe("table reducer", () => {
         expect(actual.status).toEqual(expectedStatus);
         expect(actual.robotX).toEqual(2);
         expect(actual.robotY).toEqual(3);
+        expect(actual.invalidMove).toBeUndefined();
       });
 
       test("moveRobot should update treasure properly", () => {
